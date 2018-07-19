@@ -1,0 +1,12 @@
+C:\新建文件夹\Projects 3\WinFormEx\Demo\bin\Debug\Demo.exe.config
+C:\新建文件夹\Projects 3\WinFormEx\Demo\obj\Debug\Demo.csprojResolveAssemblyReference.cache
+C:\新建文件夹\Projects 3\WinFormEx\Demo\obj\Debug\Demo.Form1.resources
+C:\新建文件夹\Projects 3\WinFormEx\Demo\obj\Debug\Demo.Properties.Resources.resources
+C:\新建文件夹\Projects 3\WinFormEx\Demo\obj\Debug\Demo.csproj.GenerateResource.Cache
+C:\新建文件夹\Projects 3\WinFormEx\Demo\bin\Debug\Demo.exe
+C:\新建文件夹\Projects 3\WinFormEx\Demo\bin\Debug\Demo.pdb
+C:\新建文件夹\Projects 3\WinFormEx\Demo\bin\Debug\WinFormEx.dll
+C:\新建文件夹\Projects 3\WinFormEx\Demo\bin\Debug\WinFormEx.pdb
+C:\新建文件夹\Projects 3\WinFormEx\Demo\obj\Debug\Demo.exe
+C:\新建文件夹\Projects 3\WinFormEx\Demo\obj\Debug\Demo.pdb
+C:\新建文件夹\Projects 3\WinFormEx\Demo\obj\Debug\Demo.StartTip.resources
