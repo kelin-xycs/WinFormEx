@@ -7,20 +7,27 @@ using System.Threading.Tasks;
 using System.Drawing;
 using System.Windows.Forms;
 
+using System.Security;
+using System.Security.Permissions;
+
 namespace WinFormEx
 {
     internal class MessageFilter : IMessageFilter
     {
 
-        static MessageFilter()
-        {
-            Application.AddMessageFilter(new MessageFilter());
-        }
 
-        //    这个方法的作用是触发 静态构造函数 ， 本身没有内容
+        [ThreadStatic]
+        private static bool isAddedMessageFilter;
+
+
         public static void Init()
         {
+            if (isAddedMessageFilter == false)
+            {
+                Application.AddMessageFilter(new MessageFilter());
 
+                isAddedMessageFilter = true;
+            }
         }
 
         public bool PreFilterMessage(ref Message m)
@@ -81,7 +88,7 @@ namespace WinFormEx
 
         private bool RaiseCommonEvent(ref Message m, Control c)
         {
-
+            
             FormEx form = c as FormEx;
             ControlEx ctrl = c as ControlEx;
 
@@ -117,39 +124,30 @@ namespace WinFormEx
                         break;
                     }
 
+                case Win32.WM_MOUSELEAVE:
+                    {
 
-                //  MouseLeave 事件使用 WinForm 本身提供的 MouseLeave 事件，
-                //  WinForm 提供的 MouseLeave 事件做的完善， 可以捕获到窗口弹出模态对话框时的 MouseLeave 事件
-                //  而且刚好 MouseLeave 事件不需要冒泡
+                        //  用于实现 MouseEnter 事件， 参考 MouseMove 消息处理中使用  MouseEventUtil.SetEnter(c) 的部分
+                        MouseEventUtil.SetLeave(c);
 
-                //  这里原来的做法，单纯靠接收 Win32.WM_MOUSELEAVE 消息是不能捕获到弹出模态对话框时的 MouseLeave 事件的
+                        e = new EventArgs();
 
-                //  当然，用于实现 MouseEnter 事件的 MouseEventUtil.SetLeave(c); 还是要调用的，
-                //  会在 FormEx ControlEx 的 override OnMouseMove() 方法中调用
+                        if (form != null)
+                        {
+                            r = form.OnMouseLeaveEx(e);
+                        }
+                        else if (ctrl != null)
+                        {
+                            r = ctrl.OnMouseLeaveEx(e);
+                        }
 
-                //case Win32.WM_MOUSELEAVE:
-                //    {
+                        // 如果 r == true ， 则返回 true 终止事件冒泡
+                        if (r)
+                            return true;
 
-                //        //  用于实现 MouseEnter 事件， 参考 MouseMove 消息处理中使用  MouseEventUtil.SetEnter(c) 的部分
-                //        MouseEventUtil.SetLeave(c);
+                        break;
+                    }
 
-                //        e = new EventArgs();
-
-                //        if (form != null)
-                //        {
-                //            r = form.OnMouseLeaveEx(e);
-                //        }
-                //        else if (ctrl != null)
-                //        {
-                //            r = ctrl.OnMouseLeaveEx(e);
-                //        }
-
-                //        // 如果 r == true ， 则返回 true 终止事件冒泡
-                //        if (r)
-                //            return true;
-
-                //        break;
-                //    }
 
             }
 

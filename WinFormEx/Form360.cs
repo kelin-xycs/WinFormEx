@@ -80,8 +80,6 @@ namespace WinFormEx
             pnlContent = new ContentPanel();
 
 
-            pnlHeader.SuspendLayout();
-            pnlBody.SuspendLayout();
             pnlContent.SuspendLayout();
             this.SuspendLayout();
 
@@ -137,8 +135,6 @@ namespace WinFormEx
 
 
 
-            pnlBody.ResumeLayout();
-            pnlHeader.ResumeLayout();
             pnlContent.ResumeLayout();
             this.ResumeLayout();
 

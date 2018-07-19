@@ -12,7 +12,7 @@ namespace WinFormEx
     {
 
 
-        static ControlEx()
+        public ControlEx()
         {
             MessageFilter.Init();
         }
@@ -31,19 +31,10 @@ namespace WinFormEx
 
         public event EventHandler MouseEnterEx;
 
+        public event EventHandler MouseLeaveEx;
 
 
-        protected override void OnMouseLeave(EventArgs e)
-        {
-            //  用于实现 MouseEnter 事件， 参考 MessageFilter 类消息处理中使用  MouseEventUtil.SetEnter(c) 的部分
-            //  这里使用 WinForm 本身的 MouseLeave 事件，
-            //  是因为 WinForm 本身的 MouseLeave 事件 可以捕获到窗口弹出模态对话框时的 MouseLeave 事件
-            //  在 MessageFilter 类中单纯靠接收 Win32.WM_MOUSELEAVE 消息是不能捕获到弹出模态对话框时的 MouseLeave 事件的
-            //  具体可参考 MessageFilter.RaiseCommonEvent(ref Message m, Control c) 方法内的注释
-            MouseEventUtil.SetLeave(this);
 
-            base.OnMouseLeave(e);
-        }
 
         //  返回 true 则 终止冒泡    返回 false 则 冒泡正常继续
         public virtual bool OnMouseMoveEx(MouseEventArgsEx e)
@@ -101,6 +92,16 @@ namespace WinFormEx
             if (this.MouseEnterEx != null)
             {
                 this.MouseEnterEx(this, e);
+            }
+
+            return false;
+        }
+
+        public virtual bool OnMouseLeaveEx(EventArgs e)
+        {
+            if (this.MouseLeaveEx != null)
+            {
+                this.MouseLeaveEx(this, e);
             }
 
             return false;

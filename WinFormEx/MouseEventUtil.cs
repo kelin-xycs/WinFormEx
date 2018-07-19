@@ -9,14 +9,14 @@ using System.Windows.Forms;
 
 namespace WinFormEx
 {
-    class MouseEventUtil
+    public class MouseEventUtil
     {
 
         private static Dictionary<Control, bool> enterDic = new Dictionary<Control,bool>();
         private static Dictionary<Control, bool> clickDic = new Dictionary<Control, bool>();
 
 
-        public static bool SetEnter(Control ctrl)
+        internal static bool SetEnter(Control ctrl)
         {
 
             if (!enterDic.ContainsKey(ctrl))
@@ -33,7 +33,7 @@ namespace WinFormEx
             enterDic.Remove(ctrl);
         }
 
-        public static void SetClickDown(Control ctrl)
+        internal static void SetClickDown(Control ctrl)
         {
             if (!clickDic.ContainsKey(ctrl))
             {
@@ -41,7 +41,7 @@ namespace WinFormEx
             }
         }
 
-        public static bool SetClickUp(Control ctrl)
+        internal static bool SetClickUp(Control ctrl)
         {
             if (clickDic.ContainsKey(ctrl))
             {
@@ -52,7 +52,7 @@ namespace WinFormEx
             return false;
         }
 
-        public static bool CheckClick(Control ctrl, int x, int y)
+        internal static bool CheckClick(Control ctrl, int x, int y)
         {
 
             Point p = ctrl.PointToClient(new Point(x, y));
@@ -63,5 +63,6 @@ namespace WinFormEx
             return false;
 
         }
+
     }
 }

@@ -63,8 +63,10 @@ namespace Demo
 
             this.Content.Body.Controls.Add(lblTip);
 
-            
 
+
+
+            
             this.ResumeLayout();
 
 
