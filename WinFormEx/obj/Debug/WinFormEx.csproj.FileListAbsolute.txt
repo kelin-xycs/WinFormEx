@@ -2,3 +2,4 @@ C:\新建文件夹\Projects 3\WinFormEx\WinFormEx\bin\Debug\WinFormEx.dll
 C:\新建文件夹\Projects 3\WinFormEx\WinFormEx\bin\Debug\WinFormEx.pdb
 C:\新建文件夹\Projects 3\WinFormEx\WinFormEx\obj\Debug\WinFormEx.dll
 C:\新建文件夹\Projects 3\WinFormEx\WinFormEx\obj\Debug\WinFormEx.pdb
+C:\新建文件夹\Projects 3\WinFormEx\WinFormEx\obj\Debug\WinFormEx.csprojResolveAssemblyReference.cache
